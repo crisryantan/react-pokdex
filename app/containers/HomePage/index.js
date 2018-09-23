@@ -39,12 +39,35 @@ const Wrapper = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
+  state = {
+    filter: '',
+  };
+
   componentDidMount() {
     this.props.getPokeList();
   }
 
+  updateFilter = filter => {
+    this.setState({ filter });
+  };
+
+  filterPokemon = filter => {
+    const { pokeList } = this.props;
+    let filteredPokemon = pokeList;
+
+    if (filter) {
+      filteredPokemon = filteredPokemon.filter(pokemon =>
+        pokemon.name.includes(filter),
+      );
+    }
+
+    return filteredPokemon;
+  };
+
   render() {
-    const { pokeList, selectPokemon, pokeRoster, focusedPokemon } = this.props;
+    const { selectPokemon, pokeRoster, focusedPokemon } = this.props;
+    const { filter } = this.state;
+    const filteredPokeList = this.filterPokemon(filter);
 
     return (
       <Wrapper>
@@ -53,7 +76,12 @@ export class HomePage extends React.PureComponent {
           pokeRoster={pokeRoster}
           focusedPokemon={focusedPokemon}
         />
-        <Pokedex pokeList={pokeList} selectPokemon={selectPokemon} />
+        <Pokedex
+          pokeList={filteredPokeList}
+          selectPokemon={selectPokemon}
+          filter={filter}
+          updateFilter={this.updateFilter}
+        />
       </Wrapper>
     );
   }

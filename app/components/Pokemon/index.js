@@ -6,14 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-const PokeRow = styled.div`
-  cursor: pointer;
-  :hover {
-    background-color: rgba(58, 60, 70, 0.8);
-  }
-`;
+import { PokeRow } from './css';
 
 /* eslint-disable react/prefer-stateless-function */
 class Pokemon extends React.PureComponent {
