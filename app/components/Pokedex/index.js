@@ -5,11 +5,9 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Pokemon from 'components/Pokemon';
-
-import { stubData } from './stubData';
 
 const PokedexWrapper = styled.div`
   background-color: rgba(221, 7, 35, 1);
@@ -66,6 +64,7 @@ const lightList = {
 /* eslint-disable react/prefer-stateless-function */
 class Pokedex extends React.PureComponent {
   render() {
+    const { pokeList, selectPokemon } = this.props;
     return (
       <PokedexWrapper>
         <PokedexTitle>Pokedex</PokedexTitle>
@@ -77,9 +76,16 @@ class Pokedex extends React.PureComponent {
           </PokeLights>
         </LightsWrapper>
         <PokeList>
-          {stubData.results.map((pokemon, index) => {
+          {pokeList.map((pokemon, index) => {
             const pokeId = `#${zeroPad(index + 1, 3)}`;
-            return <Pokemon key={pokeId} name={pokemon.name} pokeId={pokeId} />;
+            return (
+              <Pokemon
+                key={pokeId}
+                pokemon={pokemon}
+                pokeId={pokeId}
+                selectPokemon={selectPokemon}
+              />
+            );
           })}
         </PokeList>
       </PokedexWrapper>
@@ -87,6 +93,9 @@ class Pokedex extends React.PureComponent {
   }
 }
 
-Pokedex.propTypes = {};
+Pokedex.propTypes = {
+  pokeList: PropTypes.array.isRequired,
+  selectPokemon: PropTypes.func.isRequired,
+};
 
 export default Pokedex;

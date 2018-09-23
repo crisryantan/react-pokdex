@@ -1,4 +1,4 @@
-export const stubData = {
+export const pokeList = {
   count: 949,
   next: null,
   previous: null,

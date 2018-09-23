@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Title } from '../commonStyled';
 
@@ -19,36 +19,52 @@ const Wrapper = styled.div`
 `;
 
 const Lineup = styled.div`
-  display: flex;
-  height: 75px;
+  padding: 10px;
 `;
 
 const LineupChild = styled.div`
-  flex: 1;
-  border: 2px;
+  width: calc(33.3333% - 4px);
+  height: 120px;
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 2px dashed;
+  margin-right: 4px;
+  cursor: pointer;
 `;
+
+const PokemonBox = styled.div`
+  text-align: center;
+  margin-top: 45px;
+`;
+
+// const dummyImage = 'http://dummyimage.com/250x250.png/dddddd/000000';
 
 /* eslint-disable react/prefer-stateless-function */
 class PokemonLineup extends React.PureComponent {
   render() {
+    const { pokeRoster, selectPokemon } = this.props;
+    console.log(pokeRoster);
     return (
       <Wrapper>
         <Title>Pokemon Lineup</Title>
         <Lineup>
-          <LineupChild>1</LineupChild>
-          <LineupChild>2</LineupChild>
-          <LineupChild>3</LineupChild>
-        </Lineup>
-        <Lineup>
-          <LineupChild>4</LineupChild>
-          <LineupChild>5</LineupChild>
-          <LineupChild>6</LineupChild>
+          {pokeRoster.map(pokemon => (
+            <LineupChild
+              key={pokemon.name}
+              onClick={() => selectPokemon(pokemon)}
+            >
+              <PokemonBox>{pokemon.name}</PokemonBox>
+            </LineupChild>
+          ))}
         </Lineup>
       </Wrapper>
     );
   }
 }
 
-PokemonLineup.propTypes = {};
+PokemonLineup.propTypes = {
+  pokeRoster: PropTypes.array.isRequired,
+  selectPokemon: PropTypes.func.isRequired,
+};
 
 export default PokemonLineup;
