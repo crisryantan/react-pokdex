@@ -20,7 +20,7 @@ export const FormField = styled.div`
 
 export const SaveBtn = styled.button`
   height: 50px;
-  background: radial-gradient(top, #307bfb 0%, #0530e5 80%);
+  background: radial-gradient(#307bfb, #0530e5);
   width: 50px;
   border-radius: 100px;
   cursor: pointer;
