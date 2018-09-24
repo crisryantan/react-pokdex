@@ -16,7 +16,7 @@ export const initialState = fromJS({
   pokeList: [],
   pokeRoster: [],
   focusedPokemon: {},
-  loading: true,
+  loading: false,
 });
 
 function findIndex(list, pokemon) {
@@ -26,7 +26,7 @@ function findIndex(list, pokemon) {
 function homePageReducer(state = initialState, action) {
   switch (action.type) {
     case GET_POKE_LIST:
-      return state;
+      return state.set('loading', true);
 
     case GET_POKE_LIST_SUCCESS: {
       return state

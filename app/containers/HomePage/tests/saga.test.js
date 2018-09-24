@@ -1,15 +1,15 @@
-/**
- * Test sagas
- */
+import { takeEvery } from 'redux-saga/effects';
+import { GET_POKE_LIST } from '../constants';
+import homepageSaga, { getPokeListSaga } from '../saga';
 
 /* eslint-disable redux-saga/yield-effects */
-// import { take, call, put, select } from 'redux-saga/effects';
-// import { defaultSaga } from '../saga';
+describe('homepageSaga', () => {
+  const homepageSagaTest = homepageSaga();
 
-// const generator = defaultSaga();
+  it('should start a task to watch for the requestPageData action', () => {
+    const expected = takeEvery(GET_POKE_LIST, getPokeListSaga);
+    const actual = homepageSagaTest.next().value;
 
-describe('defaultSaga Saga', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+    expect(actual).toEqual(expected);
   });
 });

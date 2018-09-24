@@ -55,7 +55,7 @@ class PokemonData extends React.PureComponent {
   };
 
   render() {
-    const { focusedPokemon, updatePokemon } = this.props;
+    const { focusedPokemon } = this.props;
     const { height, weight, gender, nature } = this.state.data;
 
     return (
