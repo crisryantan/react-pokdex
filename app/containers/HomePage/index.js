@@ -28,6 +28,7 @@ import {
 import {
   getPokeList as getPokeListAction,
   selectPokemon as selectPokemonAction,
+  updatePokemonInfo,
 } from './actions';
 
 const Wrapper = styled.div`
@@ -65,7 +66,12 @@ export class HomePage extends React.PureComponent {
   };
 
   render() {
-    const { selectPokemon, pokeRoster, focusedPokemon } = this.props;
+    const {
+      selectPokemon,
+      pokeRoster,
+      focusedPokemon,
+      updatePokemon,
+    } = this.props;
     const { filter } = this.state;
     const filteredPokeList = this.filterPokemon(filter);
 
@@ -75,6 +81,7 @@ export class HomePage extends React.PureComponent {
           selectPokemon={selectPokemon}
           pokeRoster={pokeRoster}
           focusedPokemon={focusedPokemon}
+          updatePokemon={updatePokemon}
         />
         <Pokedex
           pokeList={filteredPokeList}
@@ -90,6 +97,7 @@ export class HomePage extends React.PureComponent {
 HomePage.propTypes = {
   getPokeList: PropTypes.func.isRequired,
   selectPokemon: PropTypes.func.isRequired,
+  updatePokemon: PropTypes.func.isRequired,
   pokeList: PropTypes.array.isRequired,
   pokeRoster: PropTypes.array.isRequired,
   focusedPokemon: PropTypes.object.isRequired,
@@ -105,6 +113,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getPokeList: () => dispatch(getPokeListAction()),
     selectPokemon: pokemon => dispatch(selectPokemonAction(pokemon)),
+    updatePokemon: pokemon => dispatch(updatePokemonInfo(pokemon)),
   };
 }
 

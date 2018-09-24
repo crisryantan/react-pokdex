@@ -27,3 +27,7 @@ export const PokemonBox = styled.div`
   text-align: center;
   margin-top: 45px;
 `;
+
+export const Title = styled.div`
+  margin-left: 10px;
+`;

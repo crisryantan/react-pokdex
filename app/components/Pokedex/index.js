@@ -51,11 +51,10 @@ class Pokedex extends React.PureComponent {
         />
         <PokeList>
           {pokeList.map(pokemon => {
-            const pokeNum = pokemon.url.replace(
-              'https://pokeapi.co/api/v2/pokemon/',
-              '',
-            );
-            const pokeId = `#${zeroPad(pokeNum.replace('/', ''), 3)}`;
+            const pokeNum = pokemon.url
+              .replace('https://pokeapi.co/api/v2/pokemon/', '')
+              .replace('/', '');
+            const pokeId = `#${zeroPad(pokeNum, 3)}`;
             return (
               <Pokemon
                 key={pokeId}

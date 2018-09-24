@@ -9,6 +9,7 @@ import {
   GET_POKE_LIST,
   GET_POKE_LIST_SUCCESS,
   SELECT_POKEMON,
+  UPDATE_POKEMON_INFO,
 } from './constants';
 
 export const initialState = fromJS({
@@ -17,6 +18,10 @@ export const initialState = fromJS({
   focusedPokemon: {},
   loading: true,
 });
+
+function findIndex(list, pokemon) {
+  return list.findIndex(listItem => listItem.get('name') === pokemon.name);
+}
 
 function homePageReducer(state = initialState, action) {
   switch (action.type) {
@@ -32,7 +37,7 @@ function homePageReducer(state = initialState, action) {
     case SELECT_POKEMON: {
       const pokeRoster = state.get('pokeRoster');
       const pokemonExist = pokeRoster.find(
-        pokemon => pokemon.name === action.pokemon.name,
+        pokemon => pokemon.get('name') === action.pokemon.name,
       );
       const rosterCount = state.get('pokeRoster').count();
 
@@ -44,13 +49,24 @@ function homePageReducer(state = initialState, action) {
       // apply FIFO principle when removing a pokemon from the roster
       if (rosterCount === 6 && !pokemonExist) {
         return state
-          .set('pokeRoster', pokeRoster.insert(0, action.pokemon).pop())
+          .set('pokeRoster', pokeRoster.insert(0, fromJS(action.pokemon)).pop())
           .set('focusedPokemon', fromJS(action.pokemon));
       }
 
       return state
-        .set('pokeRoster', pokeRoster.insert(0, action.pokemon))
+        .set('pokeRoster', pokeRoster.insert(0, fromJS(action.pokemon)))
         .set('focusedPokemon', fromJS(action.pokemon));
+    }
+
+    case UPDATE_POKEMON_INFO: {
+      const indexOfPokeList = findIndex(state.get('pokeList'), action.pokemon);
+      const indexOfPokeRoster = findIndex(
+        state.get('pokeRoster'),
+        action.pokemon,
+      );
+      return state
+        .setIn(['pokeList', indexOfPokeList], fromJS(action.pokemon))
+        .setIn(['pokeRoster', indexOfPokeRoster], fromJS(action.pokemon));
     }
 
     default:
