@@ -19,22 +19,17 @@ export const PokeList = styled.div`
   overflow-x: hidden;
 `;
 
-export const TitleWrapper = styled.div`
-  display: flex;
-`;
+export const TitleWrapper = styled.div``;
 
 export const PokedexTitle = styled.div`
   color: #fff;
   text-align: center;
   font-size: 30px;
-  flex: 1;
-  margin-top: 20px;
 `;
 
 export const LightsWrapper = styled.div`
-  flex: 1;
-  margin-top: 6px;
-  margin-right: -5px;
+  margin-top: -35px;
+  float: right;
 `;
 
 export const PokeLights = styled.div`

@@ -62,7 +62,7 @@ class PokemonData extends React.PureComponent {
       <Wrapper>
         <Title>Pokemon Data</Title>
         {focusedPokemon.name && (
-          <div>
+          <div className="form">
             <FormField>NAME: {focusedPokemon.name}</FormField>
             <FormField>
               <Input

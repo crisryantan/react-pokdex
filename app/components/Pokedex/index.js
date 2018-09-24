@@ -16,7 +16,6 @@ import {
   LightsWrapper,
   PokeLights,
   CircleLight,
-  PowerCircle,
   TitleWrapper,
 } from './css';
 
@@ -40,9 +39,6 @@ class Pokedex extends React.PureComponent {
     return (
       <PokedexWrapper>
         <TitleWrapper>
-          <PowerCircle>
-            <div className="reflect" />
-          </PowerCircle>
           <PokedexTitle>Pokedex</PokedexTitle>
           <LightsWrapper>
             <PokeLights>

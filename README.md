@@ -3,8 +3,9 @@
 ### Disclaimer
 
 - I wasn't able to use the API successfully as pokeApi had outages as of late: [#369](https://github.com/PokeAPI/pokeapi/issues/369), [#373](https://github.com/PokeAPI/pokeapi/issues/373), [#374](https://github.com/PokeAPI/pokeapi/issues/374)
-- [Error thrown](https://imgur.com/a/yge9xkq), I tried asking the dev team behind the api because they have a [slack channel](https://imgur.com/a/d93L8IP). One suspects that it must be a [Cloudfare issue](https://imgur.com/a/IF7GCRv) as it works on some IP's and it doesn't work for some as well. :(
+- [Outage](https://imgur.com/a/bVWFCXj) removing the offset/limit on the api still doesn't fix the problem. I tried asking the dev team behind the api because they have a [slack channel](https://imgur.com/a/d93L8IP). One suspects that it must be a [Cloudfare issue](https://imgur.com/a/IF7GCRv) as it works on some IP's and it doesn't work for some as well. :(
 - I think they are having problems at the moment as they are in a [turnover period](https://github.com/PokeAPI/pokeapi/issues/350) as the owner has decided to stop supporting pokeApi
+- I had to improvise and use stubData instead. Unfortunately, getting all detailed info will be too big so I just resorted with pokemon names.
 
 ### What would I have done if I was able to use the api successfully
 
@@ -17,8 +18,8 @@
 
   To get specific pokemon data: `https://pokeapi.co/api/v2/pokemon/:id/`
 
-- I planned to have a saga specifically when `selectPokemon` action is dispatched, that way I can fetch the specific pokemon data and dispatch supposedly `selectPokemonSuccess` so that I will be able display pokemon image and other details about the pokemon when displayed on `PokemonData` component
-- The current implementation would have been a little different specifically on design aspects, as currently I am only displaying pokemon name instead of image of the pokemon on `PokemonLineup` component.
+- I planned to have a saga specifically when `selectPokemon` action is dispatched, that way I can fetch the specific pokemon data and dispatch supposedly an action called `selectPokemonSuccess` so that I will be able display pokemon image on the `PokemonLineup` component and other details about the pokemon when displayed on `PokemonData` component.
+- The current implementation would have been a little different specifically on design aspects, as currently I am only displaying pokemon name instead of an image of the pokemon on `PokemonLineup` component.
 
 ### Tech stack
 
@@ -34,6 +35,7 @@
 
 - `yarn install` - to install dependencies.
 - `yarn start` - Runs the app in development mode.
+- `yarn test` - Runs the tests inside the app.
 
 ### Questions
 
