@@ -2,8 +2,8 @@ import { fromJS } from 'immutable';
 import homePageReducer from '../reducer';
 
 import {
-  getPokeList,
-  getPokeListSuccess,
+  getPokeResources,
+  getPokeResourcesSuccess,
   selectPokemonSuccess,
   updatePokemonInfo,
 } from '../actions';
@@ -15,6 +15,7 @@ describe('homePageReducer', () => {
     state = fromJS({
       pokeList: [],
       pokeRoster: [],
+      pokeNatures: [],
       focusedPokemon: {},
       loading: false,
     });
@@ -24,37 +25,46 @@ describe('homePageReducer', () => {
     expect(homePageReducer(undefined, {})).toEqual(state);
   });
 
-  it('should handle the getPokeList action correctly', () => {
+  it('should handle the getPokeResources action correctly', () => {
     const expectedResult = fromJS({
       pokeList: [],
       pokeRoster: [],
+      pokeNatures: [],
       focusedPokemon: {},
       loading: true,
     });
-    expect(homePageReducer(state, getPokeList())).toEqual(expectedResult);
+    expect(homePageReducer(state, getPokeResources())).toEqual(expectedResult);
   });
 
-  it('should handle the getPokeListSuccess action correctly', () => {
+  it('should handle the getPokeResourcesSuccess action correctly', () => {
     const pokeList = [
       { name: 'Bulbasaur' },
       { name: 'Squirtle' },
       { name: 'Charmander' },
     ];
+    const pokeNatures = [
+      { name: 'Hardy' },
+      { name: 'Bold' },
+      { name: 'Modest' },
+    ];
+
     const expectedResult = fromJS({
       pokeList,
+      pokeNatures,
       focusedPokemon: {},
       pokeRoster: [],
       loading: false,
     });
-    expect(homePageReducer(state, getPokeListSuccess(pokeList))).toEqual(
-      expectedResult,
-    );
+    expect(
+      homePageReducer(state, getPokeResourcesSuccess(pokeList, pokeNatures)),
+    ).toEqual(expectedResult);
   });
 
   it('should handle the selectPokemonSuccess action correctly', () => {
     const pokemon = { name: 'Bulbasaur' };
     const expectedResult = fromJS({
       pokeList: [],
+      pokeNatures: [],
       focusedPokemon: pokemon,
       pokeRoster: [pokemon],
       loading: false,
@@ -68,6 +78,7 @@ describe('homePageReducer', () => {
     const pokemon = { name: 'Bulbasaur' };
     const expectedResult = fromJS({
       pokeList: [pokemon],
+      pokeNatures: [],
       focusedPokemon: {},
       pokeRoster: [pokemon],
       loading: false,

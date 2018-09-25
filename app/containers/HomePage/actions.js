@@ -5,23 +5,24 @@
  */
 
 import {
-  GET_POKE_LIST,
-  GET_POKE_LIST_SUCCESS,
+  GET_POKE_RESOURCES,
+  GET_POKE_RESOURCES_SUCCESS,
   SELECT_POKEMON,
   SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
 } from './constants';
 
-export function getPokeList() {
+export function getPokeResources() {
   return {
-    type: GET_POKE_LIST,
+    type: GET_POKE_RESOURCES,
   };
 }
 
-export function getPokeListSuccess(pokeList) {
+export function getPokeResourcesSuccess(pokeList, pokeNatures) {
   return {
-    type: GET_POKE_LIST_SUCCESS,
+    type: GET_POKE_RESOURCES_SUCCESS,
     pokeList,
+    pokeNatures,
   };
 }
 

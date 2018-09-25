@@ -6,6 +6,7 @@ import {
   makeSelectPokeList,
   makeSelectPokeRoster,
   makeSelectFocusedPokemon,
+  makeSelectPokeNatures,
 } from '../selectors';
 
 describe('selectHomepage', () => {
@@ -13,6 +14,7 @@ describe('selectHomepage', () => {
     const homePageState = fromJS({
       pokeList: [],
       pokeRoster: [],
+      pokeNatures: [],
       focusedPokemon: {},
       loading: false,
     });
@@ -72,5 +74,18 @@ describe('makeSelectFocusedPokemon', () => {
       },
     });
     expect(selector(mockedState)).toEqual(focusedPokemon);
+  });
+});
+
+describe('makeSelectPokeNatures', () => {
+  const selector = makeSelectPokeNatures();
+  it('should select the pokeNatures state', () => {
+    const pokeNatures = [];
+    const mockedState = fromJS({
+      homepage: {
+        pokeNatures,
+      },
+    });
+    expect(selector(mockedState)).toEqual(pokeNatures);
   });
 });

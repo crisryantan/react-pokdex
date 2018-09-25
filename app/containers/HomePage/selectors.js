@@ -24,6 +24,11 @@ const makeSelectPokeRoster = () =>
     substate.get('pokeRoster').toJS(),
   );
 
+const makeSelectPokeNatures = () =>
+  createSelector(selectHomePageDomain, substate =>
+    substate.get('pokeNatures').toJS(),
+  );
+
 const makeSelectFocusedPokemon = () =>
   createSelector(selectHomePageDomain, substate =>
     substate.get('focusedPokemon').toJS(),
@@ -38,5 +43,6 @@ export {
   makeSelectLoading,
   makeSelectPokeList,
   makeSelectPokeRoster,
+  makeSelectPokeNatures,
   makeSelectFocusedPokemon,
 };

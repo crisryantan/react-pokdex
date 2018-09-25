@@ -9,6 +9,7 @@ describe('<PokemonData />', () => {
   let pokeRoster;
   let updatePokemon;
   let focusedPokemon;
+  let pokeNatures;
 
   beforeEach(() => {
     pokeRoster = [
@@ -16,6 +17,7 @@ describe('<PokemonData />', () => {
     ];
     updatePokemon = jest.fn();
     focusedPokemon = {};
+    pokeNatures = [{ name: 'Hardy' }, { name: 'Bold' }, { name: 'Modest' }];
   });
 
   const buildSubject = customProps => {
@@ -23,6 +25,7 @@ describe('<PokemonData />', () => {
       pokeRoster,
       updatePokemon,
       focusedPokemon,
+      pokeNatures,
     };
     return shallow(<PokemonData {...Object.assign({}, props, customProps)} />);
   };

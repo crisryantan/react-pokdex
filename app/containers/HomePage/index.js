@@ -24,9 +24,10 @@ import {
   makeSelectPokeList,
   makeSelectPokeRoster,
   makeSelectFocusedPokemon,
+  makeSelectPokeNatures,
 } from './selectors';
 import {
-  getPokeList as getPokeListAction,
+  getPokeResources as getPokeResourcesAction,
   selectPokemon as selectPokemonAction,
   updatePokemonInfo,
 } from './actions';
@@ -45,7 +46,7 @@ export class HomePage extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.props.getPokeList();
+    this.props.getPokeResources();
   }
 
   updateFilter = filter => {
@@ -69,6 +70,7 @@ export class HomePage extends React.PureComponent {
     const {
       selectPokemon,
       pokeRoster,
+      pokeNatures,
       focusedPokemon,
       updatePokemon,
     } = this.props;
@@ -82,6 +84,7 @@ export class HomePage extends React.PureComponent {
           pokeRoster={pokeRoster}
           focusedPokemon={focusedPokemon}
           updatePokemon={updatePokemon}
+          pokeNatures={pokeNatures}
         />
         <Pokedex
           pokeList={filteredPokeList}
@@ -95,23 +98,25 @@ export class HomePage extends React.PureComponent {
 }
 
 HomePage.propTypes = {
-  getPokeList: PropTypes.func.isRequired,
+  getPokeResources: PropTypes.func.isRequired,
   selectPokemon: PropTypes.func.isRequired,
   updatePokemon: PropTypes.func.isRequired,
   pokeList: PropTypes.array.isRequired,
   pokeRoster: PropTypes.array.isRequired,
+  pokeNatures: PropTypes.array.isRequired,
   focusedPokemon: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   pokeList: makeSelectPokeList(),
   pokeRoster: makeSelectPokeRoster(),
+  pokeNatures: makeSelectPokeNatures(),
   focusedPokemon: makeSelectFocusedPokemon(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPokeList: () => dispatch(getPokeListAction()),
+    getPokeResources: () => dispatch(getPokeResourcesAction()),
     selectPokemon: pokemon => dispatch(selectPokemonAction(pokemon)),
     updatePokemon: pokemon => dispatch(updatePokemonInfo(pokemon)),
   };

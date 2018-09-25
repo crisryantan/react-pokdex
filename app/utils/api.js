@@ -15,5 +15,8 @@ export const axiosInstance = axios.create({
 export const getPokeList = () =>
   axiosInstance.get('/pokemon/').then(response => response.data);
 
+export const getPokeNature = () =>
+  axiosInstance.get('/nature/').then(response => response.data);
+
 export const getSpecificPokemon = id =>
   axiosInstance.get(`/pokemon/${id}`).then(response => response.data);

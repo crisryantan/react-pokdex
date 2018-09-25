@@ -1,36 +1,38 @@
 import {
-  getPokeList,
-  getPokeListSuccess,
+  getPokeResources,
+  getPokeResourcesSuccess,
   selectPokemon,
   updatePokemonInfo,
 } from '../actions';
 
 import {
-  GET_POKE_LIST,
-  GET_POKE_LIST_SUCCESS,
+  GET_POKE_RESOURCES,
+  GET_POKE_RESOURCES_SUCCESS,
   SELECT_POKEMON,
   UPDATE_POKEMON_INFO,
 } from '../constants';
 
 describe('HomePage actions', () => {
-  describe('getPokeList', () => {
-    it('has a type of GET_POKE_LIST', () => {
+  describe('getPokeResources', () => {
+    it('has a type of GET_POKE_RESOURCES', () => {
       const expected = {
-        type: GET_POKE_LIST,
+        type: GET_POKE_RESOURCES,
       };
 
-      expect(getPokeList()).toEqual(expected);
+      expect(getPokeResources()).toEqual(expected);
     });
   });
 
-  describe('getPokeListSuccess', () => {
-    it('has a type of GET_POKE_LIST_SUCCESS', () => {
+  describe('getPokeResourcesSuccess', () => {
+    it('has a type of GET_POKE_RESOURCES_SUCCESS', () => {
       const pokeList = [];
+      const pokeNatures = [];
       const expected = {
-        type: GET_POKE_LIST_SUCCESS,
+        type: GET_POKE_RESOURCES_SUCCESS,
         pokeList,
+        pokeNatures,
       };
-      expect(getPokeListSuccess(pokeList)).toEqual(expected);
+      expect(getPokeResourcesSuccess(pokeList, pokeNatures)).toEqual(expected);
     });
   });
 

@@ -21,6 +21,10 @@
 - I planned to have a saga specifically when `selectPokemon` action is dispatched, that way I can fetch the specific pokemon data and dispatch supposedly an action called `selectPokemonSuccess` so that I will be able display pokemon image on the `PokemonLineup` component and other details about the pokemon when displayed on `PokemonData` component.
 - The current implementation would have been a little different specifically on design aspects, as currently I am only displaying pokemon name instead of an image of the pokemon on `PokemonLineup` component.
 
+### Update - pokeapi outage is fixed.
+
+- The api is now running, so I will remove the stub data and use the apis
+
 ### Tech stack
 
 - **React** - frontend/view library

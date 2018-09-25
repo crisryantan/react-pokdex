@@ -1,13 +1,15 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { getPokeList, getSpecificPokemon } from 'utils/api';
-import { GET_POKE_LIST, SELECT_POKEMON } from './constants';
-import { getPokeListSuccess, selectPokemonSuccess } from './actions';
+import { getPokeList, getSpecificPokemon, getPokeNature } from 'utils/api';
+import { GET_POKE_RESOURCES, SELECT_POKEMON } from './constants';
+import { getPokeResourcesSuccess, selectPokemonSuccess } from './actions';
 
-export function* getPokeListSaga() {
+export function* getPokeResourcesSaga() {
   try {
-    const { results } = yield call(getPokeList);
-    yield put(getPokeListSuccess(results));
+    const { results: pokeList } = yield call(getPokeList);
+    const { results: pokeNatures } = yield call(getPokeNature);
+
+    yield put(getPokeResourcesSuccess(pokeList, pokeNatures));
   } catch (error) {
     yield put(error);
   }
@@ -29,6 +31,6 @@ export function* getSpecificPokemonSaga({ pokemon }) {
 }
 
 export default function* defaultSaga() {
-  yield takeEvery(GET_POKE_LIST, getPokeListSaga);
+  yield takeEvery(GET_POKE_RESOURCES, getPokeResourcesSaga);
   yield takeEvery(SELECT_POKEMON, getSpecificPokemonSaga);
 }

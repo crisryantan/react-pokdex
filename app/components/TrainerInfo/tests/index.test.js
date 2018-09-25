@@ -8,12 +8,14 @@ describe('<TrainerInfo />', () => {
   let focusedPokemon;
   let selectPokemon;
   let updatePokemon;
+  let pokeNatures;
 
   beforeEach(() => {
     pokeRoster = [
       { name: 'Bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' },
     ];
     focusedPokemon = {};
+    pokeNatures = [];
     updatePokemon = jest.fn();
     selectPokemon = jest.fn();
   });
@@ -24,6 +26,7 @@ describe('<TrainerInfo />', () => {
       focusedPokemon,
       updatePokemon,
       selectPokemon,
+      pokeNatures,
     };
     return shallow(<TrainerInfo {...Object.assign({}, props, customProps)} />);
   };

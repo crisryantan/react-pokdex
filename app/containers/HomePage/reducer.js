@@ -6,8 +6,8 @@
 
 import { fromJS } from 'immutable';
 import {
-  GET_POKE_LIST,
-  GET_POKE_LIST_SUCCESS,
+  GET_POKE_RESOURCES,
+  GET_POKE_RESOURCES_SUCCESS,
   SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
 } from './constants';
@@ -15,6 +15,7 @@ import {
 export const initialState = fromJS({
   pokeList: [],
   pokeRoster: [],
+  pokeNatures: [],
   focusedPokemon: {},
   loading: false,
 });
@@ -25,13 +26,14 @@ function findIndex(list, pokemon) {
 
 function homePageReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_POKE_LIST:
+    case GET_POKE_RESOURCES:
       return state.set('loading', true);
 
-    case GET_POKE_LIST_SUCCESS: {
+    case GET_POKE_RESOURCES_SUCCESS: {
       return state
         .set('loading', false)
-        .set('pokeList', fromJS(action.pokeList));
+        .set('pokeList', fromJS(action.pokeList))
+        .set('pokeNatures', fromJS(action.pokeNatures));
     }
 
     case SELECT_POKEMON_SUCCESS: {

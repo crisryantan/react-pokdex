@@ -5,7 +5,14 @@ export const PokedexWrapper = styled.div`
   padding-right: 15px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  flex: 1 1 250px;
+  flex: 1 1 320px;
+
+  @media (max-width: 864px) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+  }
 `;
 
 export const PokeList = styled.div`
@@ -17,6 +24,10 @@ export const PokeList = styled.div`
   border: 10px solid #f1f1f1;
   overflow: scroll;
   overflow-x: hidden;
+
+  @media (max-width: 864px) {
+    height: 400px;
+  }
 `;
 
 export const PokedexTitle = styled.div`
