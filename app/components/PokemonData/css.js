@@ -8,6 +8,11 @@ export const Wrapper = styled.div`
   margin: 15px;
   border-radius: 10px;
   position: relative;
+
+  .ant-select-dropdown-menu-item,
+  .ant-select {
+    font-family: 'Bungee', cursive;
+  }
 `;
 
 export const Title = styled.div`

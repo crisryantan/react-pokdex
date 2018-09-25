@@ -11,6 +11,7 @@ import {
   SELECT_POKEMON,
   SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
+  REMOVE_POKEMON,
 } from './constants';
 
 export function getPokeResources() {
@@ -37,6 +38,13 @@ export function getPokeResourcesError(err) {
 export function selectPokemon(pokemon) {
   return {
     type: SELECT_POKEMON,
+    pokemon,
+  };
+}
+
+export function removePokemon(pokemon) {
+  return {
+    type: REMOVE_POKEMON,
     pokemon,
   };
 }

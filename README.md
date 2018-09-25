@@ -1,30 +1,5 @@
 # React Pokedex
 
-### Disclaimer
-
-- I wasn't able to use the API successfully as pokeApi had outages as of late: [#369](https://github.com/PokeAPI/pokeapi/issues/369), [#373](https://github.com/PokeAPI/pokeapi/issues/373), [#374](https://github.com/PokeAPI/pokeapi/issues/374)
-- [Outage](https://imgur.com/a/bVWFCXj) removing the offset/limit on the api still doesn't fix the problem. I tried asking the dev team behind the api because they have a [slack channel](https://imgur.com/a/d93L8IP). One suspects that it must be a [Cloudfare issue](https://imgur.com/a/IF7GCRv) as it works on some IP's and it doesn't work for some as well. :(
-- I think they are having problems at the moment as they are in a [turnover period](https://github.com/PokeAPI/pokeapi/issues/350) as the owner has decided to stop supporting pokeApi
-- I had to improvise and use stubData instead. Unfortunately, getting all detailed info will be too big so I just resorted with pokemon names.
-
-### What would I have done if I was able to use the api successfully
-
-- remove the stubdata for pokemon list and pokemon nature
-- I would have used these apis:
-
-  To get the list of pokemons: `https://pokeapi.co/api/v2/pokemon/`
-
-  To get list of pokemon nature: `https://pokeapi.co/api/v2/nature/`
-
-  To get specific pokemon data: `https://pokeapi.co/api/v2/pokemon/:id/`
-
-- I planned to have a saga specifically when `selectPokemon` action is dispatched, that way I can fetch the specific pokemon data and dispatch supposedly an action called `selectPokemonSuccess` so that I will be able display pokemon image on the `PokemonLineup` component and other details about the pokemon when displayed on `PokemonData` component.
-- The current implementation would have been a little different specifically on design aspects, as currently I am only displaying pokemon name instead of an image of the pokemon on `PokemonLineup` component.
-
-### Update - pokeapi outage is fixed.
-
-- The api is now running, so I will remove the stub data and use the apis
-
 ### Tech stack
 
 - **React** - frontend/view library
@@ -97,3 +72,29 @@
   ├── configureStore.js
   └── app.js
   ```
+
+### Update - pokeapi outage is fixed.
+
+- The api is now running, so I will remove the stub data and use the apis
+- Disregard Disclaimer below...
+
+### Disclaimer
+
+- I wasn't able to use the API successfully as pokeApi had outages as of late: [#369](https://github.com/PokeAPI/pokeapi/issues/369), [#373](https://github.com/PokeAPI/pokeapi/issues/373), [#374](https://github.com/PokeAPI/pokeapi/issues/374)
+- [Outage](https://imgur.com/a/bVWFCXj) removing the offset/limit on the api still doesn't fix the problem. I tried asking the dev team behind the api because they have a [slack channel](https://imgur.com/a/d93L8IP). One suspects that it must be a [Cloudfare issue](https://imgur.com/a/IF7GCRv) as it works on some IP's and it doesn't work for some as well. :(
+- I think they are having problems at the moment as they are in a [turnover period](https://github.com/PokeAPI/pokeapi/issues/350) as the owner has decided to stop supporting pokeApi
+- I had to improvise and use stubData instead. Unfortunately, getting all detailed info will be too big so I just resorted with pokemon names.
+
+### What would I have done if I was able to use the api successfully
+
+- remove the stubdata for pokemon list and pokemon nature
+- I would have used these apis:
+
+  To get the list of pokemons: `https://pokeapi.co/api/v2/pokemon/`
+
+  To get list of pokemon nature: `https://pokeapi.co/api/v2/nature/`
+
+  To get specific pokemon data: `https://pokeapi.co/api/v2/pokemon/:id/`
+
+- I planned to have a saga specifically when `selectPokemon` action is dispatched, that way I can fetch the specific pokemon data and dispatch supposedly an action called `selectPokemonSuccess` so that I will be able display pokemon image on the `PokemonLineup` component and other details about the pokemon when displayed on `PokemonData` component.
+- The current implementation would have been a little different specifically on design aspects, as currently I am only displaying pokemon name instead of an image of the pokemon on `PokemonLineup` component.

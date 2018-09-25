@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PokemonLineup from '../index';
-import { LineupChild } from '../css';
+import { PokeImage, RemoveBtn } from '../css';
 
 describe('<PokemonLineup />', () => {
   let subject = null;
   let pokeRoster;
   let pokeId;
   let selectPokemon;
+  let removePokemon;
 
   beforeEach(() => {
     pokeRoster = [
@@ -19,6 +20,7 @@ describe('<PokemonLineup />', () => {
     ];
     pokeId = '#001';
     selectPokemon = jest.fn();
+    removePokemon = jest.fn();
   });
 
   const buildSubject = customProps => {
@@ -26,6 +28,7 @@ describe('<PokemonLineup />', () => {
       pokeRoster,
       pokeId,
       selectPokemon,
+      removePokemon,
     };
     return shallow(
       <PokemonLineup {...Object.assign({}, props, customProps)} />,
@@ -37,11 +40,19 @@ describe('<PokemonLineup />', () => {
     expect(subject.find(PokemonLineup)).toBeDefined();
   });
 
-  it('should successfully selectPokemon', () => {
+  it('should successfully trigger selectPokemon', () => {
     subject = buildSubject();
-    const LineupChildField = subject.find(LineupChild);
-    LineupChildField.props().onClick();
+    const PokeImageField = subject.find(PokeImage);
+    PokeImageField.props().onClick();
 
     expect(selectPokemon).toBeCalled();
+  });
+
+  it('should successfully trigger removeBtn', () => {
+    subject = buildSubject();
+    const RemoveBtnField = subject.find(RemoveBtn);
+    RemoveBtnField.props().onClick();
+
+    expect(removePokemon).toBeCalled();
   });
 });

@@ -29,6 +29,7 @@ import {
 import {
   getPokeResources as getPokeResourcesAction,
   selectPokemon as selectPokemonAction,
+  removePokemon as removePokemonAction,
   updatePokemonInfo,
 } from './actions';
 
@@ -78,6 +79,7 @@ export class HomePage extends React.PureComponent {
       pokeNatures,
       focusedPokemon,
       updatePokemon,
+      removePokemon,
     } = this.props;
     const { filter } = this.state;
     const filteredPokeList = this.filterPokemon(filter);
@@ -90,6 +92,7 @@ export class HomePage extends React.PureComponent {
           focusedPokemon={focusedPokemon}
           updatePokemon={updatePokemon}
           pokeNatures={pokeNatures}
+          removePokemon={removePokemon}
         />
         <Pokedex
           pokeList={filteredPokeList}
@@ -106,6 +109,7 @@ HomePage.propTypes = {
   getPokeResources: PropTypes.func.isRequired,
   selectPokemon: PropTypes.func.isRequired,
   updatePokemon: PropTypes.func.isRequired,
+  removePokemon: PropTypes.func.isRequired,
   pokeList: PropTypes.array.isRequired,
   pokeRoster: PropTypes.array.isRequired,
   pokeNatures: PropTypes.array.isRequired,
@@ -124,6 +128,7 @@ function mapDispatchToProps(dispatch) {
     getPokeResources: () => dispatch(getPokeResourcesAction()),
     selectPokemon: pokemon => dispatch(selectPokemonAction(pokemon)),
     updatePokemon: pokemon => dispatch(updatePokemonInfo(pokemon)),
+    removePokemon: pokemon => dispatch(removePokemonAction(pokemon)),
   };
 }
 

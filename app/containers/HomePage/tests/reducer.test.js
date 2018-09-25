@@ -7,6 +7,7 @@ import {
   getPokeResourcesError,
   selectPokemonSuccess,
   updatePokemonInfo,
+  removePokemon,
 } from '../actions';
 
 describe('homePageReducer', () => {
@@ -99,6 +100,20 @@ describe('homePageReducer', () => {
       loading: false,
     });
     expect(homePageReducer(state, updatePokemonInfo(pokemon))).toEqual(
+      expectedResult,
+    );
+  });
+
+  it('should handle the removePokemon action correctly', () => {
+    const pokemon = { name: 'Bulbasaur' };
+    const expectedResult = fromJS({
+      pokeList: [],
+      pokeNatures: [],
+      focusedPokemon: {},
+      pokeRoster: [],
+      loading: false,
+    });
+    expect(homePageReducer(state, removePokemon(pokemon))).toEqual(
       expectedResult,
     );
   });

@@ -21,10 +21,15 @@ class TrainerInfo extends React.PureComponent {
       focusedPokemon,
       updatePokemon,
       pokeNatures,
+      removePokemon,
     } = this.props;
     return (
       <TrainerWrapper>
-        <PokemonLineup pokeRoster={pokeRoster} selectPokemon={selectPokemon} />
+        <PokemonLineup
+          pokeRoster={pokeRoster}
+          selectPokemon={selectPokemon}
+          removePokemon={removePokemon}
+        />
         <PokemonData
           focusedPokemon={focusedPokemon}
           updatePokemon={updatePokemon}
@@ -38,6 +43,7 @@ class TrainerInfo extends React.PureComponent {
 TrainerInfo.propTypes = {
   selectPokemon: PropTypes.func.isRequired,
   updatePokemon: PropTypes.func.isRequired,
+  removePokemon: PropTypes.func.isRequired,
   pokeRoster: PropTypes.array.isRequired,
   pokeNatures: PropTypes.array.isRequired,
   focusedPokemon: PropTypes.object.isRequired,

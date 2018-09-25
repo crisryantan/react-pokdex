@@ -14,17 +14,12 @@ export const Lineup = styled.div`
 `;
 
 export const LineupChild = styled.div`
-  width: calc(33.3333% - 4px);
+  width: calc(33.3333% - 10px);
   height: 120px;
   display: inline-block;
   margin-bottom: 10px;
   border: 2px dashed;
-  margin-right: 4px;
-  cursor: pointer;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+  margin-right: 10px;
 `;
 
 export const Title = styled.div`
@@ -33,8 +28,21 @@ export const Title = styled.div`
 
 export const PokeImage = styled.div`
   height: 100%;
-  background: ${props => `url(${props.url})`};
-  background-position: center;
+  background: ${props => `url(${props.url})`} no-repeat center;
   background-size: contain;
-  background-repeat: no-repeat;
+  cursor: pointer;
+`;
+
+export const RemoveBtn = styled.button`
+  color: #d23737;
+  float: right;
+  cursor: pointer;
+
+  :hover {
+    color: #fd0000;
+  }
+
+  :focus {
+    outline: 0;
+  }
 `;

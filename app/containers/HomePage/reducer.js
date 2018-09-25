@@ -11,6 +11,7 @@ import {
   GET_POKE_RESOURCES_ERROR,
   SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
+  REMOVE_POKEMON,
 } from './constants';
 
 export const initialState = fromJS({
@@ -75,6 +76,14 @@ function homePageReducer(state = initialState, action) {
         .setIn(['pokeList', indexOfPokeList], fromJS(action.pokemon))
         .setIn(['pokeRoster', indexOfPokeRoster], fromJS(action.pokemon));
     }
+
+    case REMOVE_POKEMON:
+      return state.set(
+        'pokeRoster',
+        state
+          .get('pokeRoster')
+          .filter(t => t.get('name') !== action.pokemon.name),
+      );
 
     default:
       return state;

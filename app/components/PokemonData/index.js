@@ -26,12 +26,13 @@ class PokemonData extends React.PureComponent {
       const {
         moveSet1 = focusedPokemon.moves[0].move.name,
         moveSet2 = focusedPokemon.moves[1].move.name,
+        ability = focusedPokemon.abilities[0].ability.name,
         gender = 'Male',
         nature = 'hardy',
       } = focusedPokemon;
 
       this.setState({
-        data: { gender, moveSet1, moveSet2, nature },
+        data: { gender, moveSet1, moveSet2, ability, nature },
       });
     }
   }
@@ -61,17 +62,19 @@ class PokemonData extends React.PureComponent {
 
   render() {
     const { focusedPokemon, pokeNatures } = this.props;
-    const { moveSet1, moveSet2, gender, nature } = this.state.data;
+    const { moveSet1, moveSet2, gender, nature, ability } = this.state.data;
+
+    const { moves, abilities, name, height, weight } = focusedPokemon;
 
     return (
       <Wrapper>
         <Title>Pokemon Data</Title>
-        {focusedPokemon.name && (
+        {name && (
           <div className="form">
             <DefaultData>
-              <span>NAME: {focusedPokemon.name}</span>
-              <span>Height: {focusedPokemon.height}</span>
-              <span>Weight: {focusedPokemon.weight}</span>
+              <span>NAME: {name}</span>
+              <span>Height: {height}</span>
+              <span>Weight: {weight}</span>
             </DefaultData>
 
             <FormField>
@@ -81,9 +84,7 @@ class PokemonData extends React.PureComponent {
                 onChange={value => this.updateData('moveSet1', value)}
                 showSearch
               >
-                {focusedPokemon.moves.map(move =>
-                  this.renderPokeMoves(move, 'select-1'),
-                )}
+                {moves.map(move => this.renderPokeMoves(move, 'select-1'))}
               </Select>
               <Select
                 value={moveSet2}
@@ -91,9 +92,7 @@ class PokemonData extends React.PureComponent {
                 onChange={value => this.updateData('moveSet2', value)}
                 showSearch
               >
-                {focusedPokemon.moves.map(move =>
-                  this.renderPokeMoves(move, 'select-2'),
-                )}
+                {moves.map(move => this.renderPokeMoves(move, 'select-2'))}
               </Select>
             </FormField>
             <FormField>
@@ -113,6 +112,19 @@ class PokemonData extends React.PureComponent {
                 {pokeNatures.map(pokeNature => (
                   <Option key={pokeNature.name} value={pokeNature.name}>
                     {pokeNature.name}
+                  </Option>
+                ))}
+              </Select>
+            </FormField>
+            <FormField>
+              <Select
+                value={ability}
+                style={{ width: '50%' }}
+                onChange={value => this.updateData('ability', value)}
+              >
+                {abilities.map(abl => (
+                  <Option key={abl.ability.name} value={abl.ability.name}>
+                    {abl.ability.name}
                   </Option>
                 ))}
               </Select>

@@ -4,6 +4,7 @@ import {
   getPokeResourcesError,
   selectPokemon,
   updatePokemonInfo,
+  removePokemon,
 } from '../actions';
 
 import {
@@ -12,6 +13,7 @@ import {
   GET_POKE_RESOURCES_ERROR,
   SELECT_POKEMON,
   UPDATE_POKEMON_INFO,
+  REMOVE_POKEMON,
 } from '../constants';
 
 describe('HomePage actions', () => {
@@ -68,6 +70,17 @@ describe('HomePage actions', () => {
         pokemon,
       };
       expect(updatePokemonInfo(pokemon)).toEqual(expected);
+    });
+  });
+
+  describe('removePokemon', () => {
+    it('has a type of REMOVE_POKEMON', () => {
+      const pokemon = { name: 'Charmander', nature: 'Cool' };
+      const expected = {
+        type: REMOVE_POKEMON,
+        pokemon,
+      };
+      expect(removePokemon(pokemon)).toEqual(expected);
     });
   });
 });

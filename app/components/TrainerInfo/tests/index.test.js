@@ -8,6 +8,7 @@ describe('<TrainerInfo />', () => {
   let focusedPokemon;
   let selectPokemon;
   let updatePokemon;
+  let removePokemon;
   let pokeNatures;
 
   beforeEach(() => {
@@ -18,6 +19,7 @@ describe('<TrainerInfo />', () => {
     pokeNatures = [];
     updatePokemon = jest.fn();
     selectPokemon = jest.fn();
+    removePokemon = jest.fn();
   });
 
   const buildSubject = customProps => {
@@ -27,6 +29,7 @@ describe('<TrainerInfo />', () => {
       updatePokemon,
       selectPokemon,
       pokeNatures,
+      removePokemon,
     };
     return shallow(<TrainerInfo {...Object.assign({}, props, customProps)} />);
   };

@@ -7,22 +7,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Title, Wrapper, Lineup, LineupChild, PokeImage } from './css';
+import {
+  Title,
+  Wrapper,
+  Lineup,
+  LineupChild,
+  PokeImage,
+  RemoveBtn,
+} from './css';
 
 /* eslint-disable react/prefer-stateless-function */
 class PokemonLineup extends React.PureComponent {
   render() {
-    const { pokeRoster, selectPokemon } = this.props;
+    const { pokeRoster, selectPokemon, removePokemon } = this.props;
     return (
       <Wrapper>
         <Title>Pokemon Lineup</Title>
         <Lineup>
           {pokeRoster.map(pokemon => (
-            <LineupChild
-              key={pokemon.name}
-              onClick={() => selectPokemon(pokemon)}
-            >
-              <PokeImage url={pokemon.sprites.front_default} />
+            <LineupChild key={pokemon.name}>
+              <RemoveBtn onClick={() => removePokemon(pokemon)}>X</RemoveBtn>
+              <PokeImage
+                className="poke-image"
+                onClick={() => selectPokemon(pokemon)}
+                url={pokemon.sprites.front_default}
+              />
             </LineupChild>
           ))}
         </Lineup>
@@ -34,6 +43,7 @@ class PokemonLineup extends React.PureComponent {
 PokemonLineup.propTypes = {
   pokeRoster: PropTypes.array.isRequired,
   selectPokemon: PropTypes.func.isRequired,
+  removePokemon: PropTypes.func.isRequired,
 };
 
 export default PokemonLineup;
