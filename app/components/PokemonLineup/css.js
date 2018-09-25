@@ -21,11 +21,10 @@ export const LineupChild = styled.div`
   border: 2px dashed;
   margin-right: 4px;
   cursor: pointer;
-`;
-
-export const PokemonBox = styled.div`
-  text-align: center;
-  margin-top: 45px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const Title = styled.div`

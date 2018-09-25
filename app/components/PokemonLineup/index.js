@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Title, Wrapper, Lineup, LineupChild, PokemonBox } from './css';
+import { Title, Wrapper, Lineup, LineupChild } from './css';
 
 // const dummyImage = 'http://dummyimage.com/250x250.png/dddddd/000000';
 
@@ -15,7 +15,6 @@ import { Title, Wrapper, Lineup, LineupChild, PokemonBox } from './css';
 class PokemonLineup extends React.PureComponent {
   render() {
     const { pokeRoster, selectPokemon } = this.props;
-
     return (
       <Wrapper>
         <Title>Pokemon Lineup</Title>
@@ -25,7 +24,7 @@ class PokemonLineup extends React.PureComponent {
               key={pokemon.name}
               onClick={() => selectPokemon(pokemon)}
             >
-              <PokemonBox>{pokemon.name}</PokemonBox>
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             </LineupChild>
           ))}
         </Lineup>

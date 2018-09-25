@@ -4,7 +4,7 @@ import homePageReducer from '../reducer';
 import {
   getPokeList,
   getPokeListSuccess,
-  selectPokemon,
+  selectPokemonSuccess,
   updatePokemonInfo,
 } from '../actions';
 
@@ -51,7 +51,7 @@ describe('homePageReducer', () => {
     );
   });
 
-  it('should handle the selectPokemon action correctly', () => {
+  it('should handle the selectPokemonSuccess action correctly', () => {
     const pokemon = { name: 'Bulbasaur' };
     const expectedResult = fromJS({
       pokeList: [],
@@ -59,7 +59,7 @@ describe('homePageReducer', () => {
       pokeRoster: [pokemon],
       loading: false,
     });
-    expect(homePageReducer(state, selectPokemon(pokemon))).toEqual(
+    expect(homePageReducer(state, selectPokemonSuccess(pokemon))).toEqual(
       expectedResult,
     );
   });

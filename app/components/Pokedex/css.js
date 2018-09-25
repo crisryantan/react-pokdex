@@ -19,8 +19,6 @@ export const PokeList = styled.div`
   overflow-x: hidden;
 `;
 
-export const TitleWrapper = styled.div``;
-
 export const PokedexTitle = styled.div`
   color: #fff;
   text-align: center;

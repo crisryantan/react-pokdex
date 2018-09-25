@@ -11,7 +11,11 @@ describe('<PokemonLineup />', () => {
 
   beforeEach(() => {
     pokeRoster = [
-      { name: 'Bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' },
+      {
+        name: 'Bulbasaur',
+        url: 'https://pokeapi.co/api/v2/pokemon/1/',
+        sprites: { front_default: 'url' },
+      },
     ];
     pokeId = '#001';
     selectPokemon = jest.fn();

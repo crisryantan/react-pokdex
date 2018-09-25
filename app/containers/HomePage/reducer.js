@@ -8,7 +8,7 @@ import { fromJS } from 'immutable';
 import {
   GET_POKE_LIST,
   GET_POKE_LIST_SUCCESS,
-  SELECT_POKEMON,
+  SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
 } from './constants';
 
@@ -34,7 +34,7 @@ function homePageReducer(state = initialState, action) {
         .set('pokeList', fromJS(action.pokeList));
     }
 
-    case SELECT_POKEMON: {
+    case SELECT_POKEMON_SUCCESS: {
       const pokeRoster = state.get('pokeRoster');
       const pokemonExist = pokeRoster.find(
         pokemon => pokemon.get('name') === action.pokemon.name,

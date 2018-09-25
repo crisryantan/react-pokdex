@@ -16,7 +16,6 @@ import {
   LightsWrapper,
   PokeLights,
   CircleLight,
-  TitleWrapper,
 } from './css';
 
 const { Search } = Input;
@@ -38,7 +37,7 @@ class Pokedex extends React.PureComponent {
     const { pokeList, selectPokemon, updateFilter } = this.props;
     return (
       <PokedexWrapper>
-        <TitleWrapper>
+        <div>
           <PokedexTitle>Pokedex</PokedexTitle>
           <LightsWrapper>
             <PokeLights>
@@ -47,7 +46,7 @@ class Pokedex extends React.PureComponent {
               <CircleLight style={{ background: lightList.green }} />
             </PokeLights>
           </LightsWrapper>
-        </TitleWrapper>
+        </div>
 
         <Search
           placeholder="Search Pokemon"
