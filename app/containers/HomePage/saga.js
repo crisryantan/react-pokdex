@@ -1,8 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-
+import { message } from 'antd';
 import { getPokeList, getSpecificPokemon, getPokeNature } from 'utils/api';
 import { GET_POKE_RESOURCES, SELECT_POKEMON } from './constants';
-import { getPokeResourcesSuccess, selectPokemonSuccess } from './actions';
+import {
+  getPokeResourcesSuccess,
+  selectPokemonSuccess,
+  getPokeResourcesError,
+} from './actions';
 
 export function* getPokeResourcesSaga() {
   try {
@@ -11,13 +15,18 @@ export function* getPokeResourcesSaga() {
 
     yield put(getPokeResourcesSuccess(pokeList, pokeNatures));
   } catch (error) {
-    yield put(error);
+    message.error(
+      'Something went wrong when fetching the resources, please refresh the page',
+    );
+    yield put(getPokeResourcesError(error));
   }
 }
 
 export function* getSpecificPokemonSaga({ pokemon }) {
   try {
     if (!pokemon.sprites) {
+      // since we already indexed in our axios instance, remove https://pokeapi.co/api/v2/pokemon/
+      // so we only get the ID of the pokemon to make the request
       const id = pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/', '');
       const data = yield call(getSpecificPokemon, id);
       const newpokemon = { ...data, ...pokemon };

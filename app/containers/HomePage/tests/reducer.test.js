@@ -4,6 +4,7 @@ import homePageReducer from '../reducer';
 import {
   getPokeResources,
   getPokeResourcesSuccess,
+  getPokeResourcesError,
   selectPokemonSuccess,
   updatePokemonInfo,
 } from '../actions';
@@ -58,6 +59,20 @@ describe('homePageReducer', () => {
     expect(
       homePageReducer(state, getPokeResourcesSuccess(pokeList, pokeNatures)),
     ).toEqual(expectedResult);
+  });
+
+  it('should handle the getPokeResourcesError action correctly', () => {
+    const err = 'Something went wrong';
+    const expectedResult = fromJS({
+      pokeList: [],
+      pokeNatures: [],
+      focusedPokemon: {},
+      pokeRoster: [],
+      loading: false,
+    });
+    expect(homePageReducer(state, getPokeResourcesError(err))).toEqual(
+      expectedResult,
+    );
   });
 
   it('should handle the selectPokemonSuccess action correctly', () => {

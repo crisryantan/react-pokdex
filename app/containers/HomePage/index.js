@@ -37,6 +37,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: #2d2c2c;
 
   @media (max-width: 992px) {
     flex-direction: column;

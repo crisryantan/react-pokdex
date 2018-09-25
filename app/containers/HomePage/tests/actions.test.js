@@ -1,6 +1,7 @@
 import {
   getPokeResources,
   getPokeResourcesSuccess,
+  getPokeResourcesError,
   selectPokemon,
   updatePokemonInfo,
 } from '../actions';
@@ -8,6 +9,7 @@ import {
 import {
   GET_POKE_RESOURCES,
   GET_POKE_RESOURCES_SUCCESS,
+  GET_POKE_RESOURCES_ERROR,
   SELECT_POKEMON,
   UPDATE_POKEMON_INFO,
 } from '../constants';
@@ -33,6 +35,17 @@ describe('HomePage actions', () => {
         pokeNatures,
       };
       expect(getPokeResourcesSuccess(pokeList, pokeNatures)).toEqual(expected);
+    });
+  });
+
+  describe('getPokeResourcesError', () => {
+    it('has a type of GET_POKE_RESOURCES_ERROR', () => {
+      const err = '';
+      const expected = {
+        type: GET_POKE_RESOURCES_ERROR,
+        err,
+      };
+      expect(getPokeResourcesError(err)).toEqual(expected);
     });
   });
 

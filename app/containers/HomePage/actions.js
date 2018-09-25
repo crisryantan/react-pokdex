@@ -7,6 +7,7 @@
 import {
   GET_POKE_RESOURCES,
   GET_POKE_RESOURCES_SUCCESS,
+  GET_POKE_RESOURCES_ERROR,
   SELECT_POKEMON,
   SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
@@ -23,6 +24,13 @@ export function getPokeResourcesSuccess(pokeList, pokeNatures) {
     type: GET_POKE_RESOURCES_SUCCESS,
     pokeList,
     pokeNatures,
+  };
+}
+
+export function getPokeResourcesError(err) {
+  return {
+    type: GET_POKE_RESOURCES_ERROR,
+    err,
   };
 }
 

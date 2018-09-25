@@ -8,6 +8,7 @@ import { fromJS } from 'immutable';
 import {
   GET_POKE_RESOURCES,
   GET_POKE_RESOURCES_SUCCESS,
+  GET_POKE_RESOURCES_ERROR,
   SELECT_POKEMON_SUCCESS,
   UPDATE_POKEMON_INFO,
 } from './constants';
@@ -34,6 +35,10 @@ function homePageReducer(state = initialState, action) {
         .set('loading', false)
         .set('pokeList', fromJS(action.pokeList))
         .set('pokeNatures', fromJS(action.pokeNatures));
+    }
+
+    case GET_POKE_RESOURCES_ERROR: {
+      return state.set('loading', false);
     }
 
     case SELECT_POKEMON_SUCCESS: {

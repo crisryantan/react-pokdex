@@ -22,6 +22,7 @@ class PokemonData extends React.PureComponent {
     const { focusedPokemon } = this.props;
     const { focusedPokemon: prevFocus } = prevProps;
     if (focusedPokemon.name !== prevFocus.name) {
+      // Add a default value for pokemon data
       const {
         moveSet1 = focusedPokemon.moves[0].move.name,
         moveSet2 = focusedPokemon.moves[1].move.name,
