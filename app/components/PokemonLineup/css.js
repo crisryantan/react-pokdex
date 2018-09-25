@@ -30,3 +30,11 @@ export const LineupChild = styled.div`
 export const Title = styled.div`
   margin-left: 10px;
 `;
+
+export const PokeImage = styled.div`
+  height: 100%;
+  background: ${props => `url(${props.url})`};
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+`;

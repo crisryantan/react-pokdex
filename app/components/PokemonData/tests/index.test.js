@@ -38,6 +38,7 @@ describe('<PokemonData />', () => {
         focusedPokemon: {
           name: 'Bulbasaur',
           url: 'https://pokeapi.co/api/v2/pokemon/1/',
+          moves: [{ move: { move: { name: 'headbutt' } } }],
         },
       });
     });

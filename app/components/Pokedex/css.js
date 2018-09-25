@@ -9,8 +9,8 @@ export const PokedexWrapper = styled.div`
 `;
 
 export const PokeList = styled.div`
-  margin-top: 5px;
-  height: 555px;
+  margin-top: 10px;
+  height: 587px;
   background-color: #a2a2a2;
   padding: 5px 10px 10px 10px;
   border-radius: 10px;

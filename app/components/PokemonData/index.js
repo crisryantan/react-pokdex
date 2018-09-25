@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popover, Input, Select, message } from 'antd';
+import { Popover, Select, message } from 'antd';
 
 import { pokemonNatures } from 'utils/stubData';
 
@@ -15,10 +15,10 @@ import { Wrapper, Title, FormField, SaveBtn } from './css';
 const { Option } = Select;
 
 const defaultValue = {
-  height: '',
-  weight: '',
   gender: 'Male',
   nature: 'Hardy',
+  moveSet1: '',
+  moveSet2: '',
 };
 
 /* eslint-disable react/prefer-stateless-function, react/no-did-update-set-state */
@@ -38,9 +38,9 @@ class PokemonData extends React.PureComponent {
   }
 
   saveChanges = () => {
-    const { updatePokemon } = this.props;
+    const { focusedPokemon, updatePokemon } = this.props;
     message.success('Successfully updated pokemon info');
-    updatePokemon(this.state.data);
+    updatePokemon({ ...focusedPokemon, ...this.state.data });
   };
 
   updateData = (key, value) => {
@@ -54,9 +54,15 @@ class PokemonData extends React.PureComponent {
     });
   };
 
+  renderPokeMoves = ({ move }, moveSet) => (
+    <Option value={move.name} key={`${moveSet}-move`}>
+      {move.name}
+    </Option>
+  );
+
   render() {
     const { focusedPokemon } = this.props;
-    const { height, weight, gender, nature } = this.state.data;
+    const { moveSet1, moveSet2, gender, nature } = this.state.data;
 
     return (
       <Wrapper>
@@ -65,23 +71,31 @@ class PokemonData extends React.PureComponent {
           <div className="form">
             <FormField>NAME: {focusedPokemon.name}</FormField>
             <FormField>
-              <Input
-                placeholder="Height"
-                style={{ width: 180, marginRight: 10 }}
-                value={height}
-                onChange={e => this.updateData('height', e.currentTarget.value)}
-              />
-              <Input
-                placeholder="Weight"
-                style={{ width: 180 }}
-                value={weight}
-                onChange={e => this.updateData('weight', e.currentTarget.value)}
-              />
+              <Select
+                value={moveSet1}
+                style={{ width: '45%', marginRight: 10 }}
+                onChange={value => this.updateData('moveSet1', value)}
+                showSearch
+              >
+                {focusedPokemon.moves.map(move =>
+                  this.renderPokeMoves(move, 'select-1'),
+                )}
+              </Select>
+              <Select
+                value={moveSet2}
+                style={{ width: '45%' }}
+                onChange={value => this.updateData('moveSet2', value)}
+                showSearch
+              >
+                {focusedPokemon.moves.map(move =>
+                  this.renderPokeMoves(move, 'select-2'),
+                )}
+              </Select>
             </FormField>
             <FormField>
               <Select
                 value={gender}
-                style={{ width: 180, marginRight: 10 }}
+                style={{ width: '45%', marginRight: 10 }}
                 onChange={value => this.updateData('gender', value)}
               >
                 <Option value="Male">Male</Option>
@@ -89,7 +103,7 @@ class PokemonData extends React.PureComponent {
               </Select>
               <Select
                 value={nature}
-                style={{ width: 180 }}
+                style={{ width: '45%' }}
                 onChange={value => this.updateData('nature', value)}
               >
                 {pokemonNatures.map(pokeNature => (

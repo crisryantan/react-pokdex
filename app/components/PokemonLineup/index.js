@@ -7,9 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Title, Wrapper, Lineup, LineupChild } from './css';
-
-// const dummyImage = 'http://dummyimage.com/250x250.png/dddddd/000000';
+import { Title, Wrapper, Lineup, LineupChild, PokeImage } from './css';
 
 /* eslint-disable react/prefer-stateless-function */
 class PokemonLineup extends React.PureComponent {
@@ -24,7 +22,7 @@ class PokemonLineup extends React.PureComponent {
               key={pokemon.name}
               onClick={() => selectPokemon(pokemon)}
             >
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+              <PokeImage url={pokemon.sprites.front_default} />
             </LineupChild>
           ))}
         </Lineup>
