@@ -6,9 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popover, Select, message } from 'antd';
+import { Select, message, Button } from 'antd';
 
-import { Wrapper, Title, FormField, SaveBtn } from './css';
+import { Wrapper, Title, FormField, DefaultData } from './css';
 
 const { Option } = Select;
 
@@ -67,11 +67,16 @@ class PokemonData extends React.PureComponent {
         <Title>Pokemon Data</Title>
         {focusedPokemon.name && (
           <div className="form">
-            <FormField>NAME: {focusedPokemon.name}</FormField>
+            <DefaultData>
+              <span>NAME: {focusedPokemon.name}</span>
+              <span>Height: {focusedPokemon.height}</span>
+              <span>Weight: {focusedPokemon.weight}</span>
+            </DefaultData>
+
             <FormField>
               <Select
                 value={moveSet1}
-                style={{ width: '45%', marginRight: 10 }}
+                style={{ width: '50%', marginRight: 10 }}
                 onChange={value => this.updateData('moveSet1', value)}
                 showSearch
               >
@@ -81,7 +86,7 @@ class PokemonData extends React.PureComponent {
               </Select>
               <Select
                 value={moveSet2}
-                style={{ width: '45%' }}
+                style={{ width: 'calc(50% - 10px)' }}
                 onChange={value => this.updateData('moveSet2', value)}
                 showSearch
               >
@@ -93,7 +98,7 @@ class PokemonData extends React.PureComponent {
             <FormField>
               <Select
                 value={gender}
-                style={{ width: '45%', marginRight: 10 }}
+                style={{ width: '50%', marginRight: 10 }}
                 onChange={value => this.updateData('gender', value)}
               >
                 <Option value="Male">Male</Option>
@@ -101,7 +106,7 @@ class PokemonData extends React.PureComponent {
               </Select>
               <Select
                 value={nature}
-                style={{ width: '45%' }}
+                style={{ width: 'calc(50% - 10px)' }}
                 onChange={value => this.updateData('nature', value)}
               >
                 {pokeNatures.map(pokeNature => (
@@ -114,9 +119,9 @@ class PokemonData extends React.PureComponent {
           </div>
         )}
         {focusedPokemon.name && (
-          <Popover content="Save changes">
-            <SaveBtn onClick={this.saveChanges} />
-          </Popover>
+          <Button type="primary" onClick={this.saveChanges}>
+            Save changes
+          </Button>
         )}
       </Wrapper>
     );

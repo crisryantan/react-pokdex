@@ -33,10 +33,14 @@ import {
 } from './actions';
 
 const Wrapper = styled.div`
-  padding: 40px;
+  padding: 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */

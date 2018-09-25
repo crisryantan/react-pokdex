@@ -25,6 +25,12 @@ export const SaveBtn = styled.button`
   border-radius: 100px;
   cursor: pointer;
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 5px;
+  right: 10px;
+`;
+
+export const DefaultData = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 `;

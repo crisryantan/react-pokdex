@@ -7,11 +7,10 @@ export const PokedexWrapper = styled.div`
   border-bottom-right-radius: 20px;
   flex: 1 1 320px;
 
-  @media (max-width: 864px) {
-    border-top-right-radius: 0px;
+  @media (max-width: 992px) {
     border-bottom-right-radius: 0px;
     padding-left: 15px;
-    padding-bottom: 15px;
+    order: 1;
   }
 `;
 
@@ -25,7 +24,7 @@ export const PokeList = styled.div`
   overflow: scroll;
   overflow-x: hidden;
 
-  @media (max-width: 864px) {
+  @media (max-width: 992px) {
     height: 400px;
   }
 `;
